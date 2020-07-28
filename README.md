@@ -1,7 +1,6 @@
 ## King David / Test task
 
-> In programming purposes
-
+> In programming purposes.
 > At this time I'm not seeking to change jobs.
 
 This project is hosts on [vercel](https://vercel.com/)
