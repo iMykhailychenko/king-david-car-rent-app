@@ -2,7 +2,7 @@
 
 This project is hosts on [vercel](https://vercel.com/)
 
-``` You can open live page by folowing this link``` - https://car-rent-phi.vercel.app/
+``` You can open live page by folowing this link``` - https://car-rent-theta.vercel.app/
 
 
 ## Technology Stack:
