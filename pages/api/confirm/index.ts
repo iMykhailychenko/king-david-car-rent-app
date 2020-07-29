@@ -1,45 +1,79 @@
 const nodemailer = require('nodemailer');
 
 export default function (req, res) {
-    const { firstName, lastName, email, title, text, price, total, totalCost } = req.body;
+    const { firstName, lastName, img, email, title, text, price, total, totalCost } = req.body;
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: 'ihor.myh@gmail.com',
-            pass: process.env.MAIL,
+            pass: 'Asdf896749325164',
         },
     });
 
     const message = {
+        from: 'ihor.myh@gmail.com',
         to: email,
-        subject: 'Rent a ' + title,
-        text: 'Hello! ' + firstName + ' ' + lastName,
+        subject: `Rent a car "${title}" &#128663;`,
+        text: `Hello! ${firstName} ${lastName}`,
         html: `
-            <h2>
-                You have booked a car on the 
-                <a href="${process.env.NEXT_PUBLIC_ORIGIN}" target="_blank" rel="noopener noreferrer">
-                    Car rental application
-                </a>
-            </h2>
-            <p>This message confirms your booking</p>
-
-            <h4>Short description:</h4>
-            <p><strong>Car type:</strong> ${title}</p>
-            <p><strong>Car description:</strong> ${text}</p>
-            <p><strong>Price per hour:</strong> ${price}</p>
-            <p><strong>Total rent time:</strong> ${total}</p>
-            <p><strong>Total cost time:</strong> $${totalCost}</p>
-
-            <br/>
-            <a href="${process.env.NEXT_PUBLIC_ORIGIN}" target="_blank" rel="noopener noreferrer">Car rental application</a>
+            <style>
+                .car-rent-container{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background-color:#f1f1f1;font-size:10px}
+                .car-rent-wrp{padding:4em 2em}.car-rent-container h2{font-size:2.4em;margin-bottom:1em}.car-rent-container h2 a{text-decoration:none;color:#4747c0}
+                .car-rent-container h2 a:hover{text-decoration:underline;color:#2121eb}
+                .car-rent-container img{display:block;width:100%;height:15em;border-radius:1em;-o-object-fit:cover;object-fit:cover}
+                .car-rent-general{margin-top:2em;padding:1em 1.5em 4em;border-radius:1em;background-color:#fff}.car-rent-general h3{margin-bottom:1em;font-size:2em}
+                .car-rent-general h4{margin-bottom:1em;font-size:1.4em;color:#f36f22}.car-rent-general table{font-size:1em;text-align:left;border-collapse:collapse}
+                .car-rent-general table td,.car-rent-general table th{border:none}.car-rent-general table th{padding:1em;width:10em}
+                .car-rent-general tr:nth-of-type(odd){background-color:#f1f1f1}@media (min-width:768px){.car-rent-container{font-size:20px}.car-rent-wrp{width:80%;margin:0 auto}
+                .car-rent-container img{height:25em}}@media (min-width:964px){.car-rent-container h2{font-size:2.5em;margin-bottom:2em}.car-rent-general{padding:4em}}
+                @media (min-width:1400px){.car-rent-container{font-size:25px}.car-rent-container h2{font-size:3em}.car-rent-wrp{width:70%}}
+            </style>
+            <div class="car-rent-container">
+                <div class="car-rent-wrp">
+                    <h2>
+                        You have booked a car on the
+                        <a href="https://car-rent-theta.vercel.app" target="_blank" rel="noopener noreferrer">
+                            Car rental application
+                        </a>
+                        &#127881; &#128663; &#128640;
+                    </h2>
+                    <img src="https://car-rent-theta.vercel.app/${img}" alt="" />
+                    <div class="car-rent-general">
+                        <h3>This message confirms your booking</h3>
+                        <h4>Short description:</h4>
+                        <table style="width: 100%;">
+                            <tr>
+                                <th>Car type:</th>
+                                <td>${title}</td>
+                            </tr>
+                            <tr>
+                                <th>Car description:</th>
+                                <td>${text}</td>
+                            </tr>
+                            <tr>
+                                <th>Price per hour:</th>
+                                <td>${price}</td>
+                            </tr>
+                            <tr>
+                                <th>Total rent time:</th>
+                                <td>${total}</td>
+                            </tr>
+                            <tr>
+                                <th>Total cost time:</th>
+                                <td>$${totalCost}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
         `,
     };
 
     transporter.sendMail(message, function (error, info) {
         if (error) {
             console.log(error);
-            res.status(500).json({ message: `Error occurred` });
+            res.status(500).json({ message: `Error occurred`, error });
         } else {
             console.log('Email sent: ' + info.response);
             res.status(200).json(req);

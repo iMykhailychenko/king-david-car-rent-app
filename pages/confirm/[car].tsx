@@ -98,6 +98,7 @@ const Confirm = () => {
             .catch((error) => {
                 dispatch(Loader.end());
                 dispatch(Warn.open(warn));
+                console.log(error);
             });
     };
 
