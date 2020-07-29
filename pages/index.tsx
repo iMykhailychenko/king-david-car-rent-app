@@ -10,26 +10,30 @@ import { initialState } from '../redux/rootState';
 import { ICar } from '../interfaces/interfaces';
 import * as Actions from '../components/car-card/car-card.actions';
 
-const Home = () => (
-    <>
-        <Head>
-            <title>Car rent application</title>
-        </Head>
+const Home = () => {
+    axios.post(process.env.NEXT_PUBLIC_ORIGIN + '/analitics')
 
-        <header>
-            <Container maxWidth="lg">
-                <Banner />
-            </Container>
-        </header>
+    return (
+        <>
+            <Head>
+                <title>Car rent application</title>
+            </Head>
 
-        <main>
-            <Container maxWidth="lg">
-                <BlackRect />
-                <CarCard />
-            </Container>
-        </main>
-    </>
-);
+            <header>
+                <Container maxWidth="lg">
+                    <Banner />
+                </Container>
+            </header>
+
+            <main>
+                <Container maxWidth="lg">
+                    <BlackRect />
+                    <CarCard />
+                </Container>
+            </main>
+        </>
+    );
+};
 
 // get cars on server side
 export const getServerSideProps = async (context) => {
