@@ -1,32 +1,32 @@
-const nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer';
 
 export default function (req, res) {
     const { firstName, lastName, img, email, title, text, price, total, totalCost } = req.body;
 
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        service: 'outlook',
         auth: {
-            user: 'ihor.myh@gmail.com',
-            pass: 'Asdf896749325164',
+            user: 'ihor.mykh@outlook.com',
+            pass: process.env.MAIL,
         },
     });
 
     const message = {
-        from: 'ihor.myh@gmail.com',
+        from: 'Car rent application <ihor.mykh@outlook.com>',
         to: email,
-        subject: `Rent a car "${title}" &#128663;`,
+        subject: `Rent a car "${title}"`,
         text: `Hello! ${firstName} ${lastName}`,
         html: `
             <style>
                 .car-rent-container{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background-color:#f1f1f1;font-size:10px}
                 .car-rent-wrp{padding:4em 2em}.car-rent-container h2{font-size:2.4em;margin-bottom:1em}.car-rent-container h2 a{text-decoration:none;color:#4747c0}
-                .car-rent-container h2 a:hover{text-decoration:underline;color:#2121eb}
-                .car-rent-container img{display:block;width:100%;height:15em;border-radius:1em;-o-object-fit:cover;object-fit:cover}
-                .car-rent-general{margin-top:2em;padding:1em 1.5em 4em;border-radius:1em;background-color:#fff}.car-rent-general h3{margin-bottom:1em;font-size:2em}
-                .car-rent-general h4{margin-bottom:1em;font-size:1.4em;color:#f36f22}.car-rent-general table{font-size:1em;text-align:left;border-collapse:collapse}
-                .car-rent-general table td,.car-rent-general table th{border:none}.car-rent-general table th{padding:1em;width:10em}
+                .car-rent-container h2 a:hover{text-decoration:underline;color:#2121eb}.car-rent-container h2, .car-rent-container h3, .car-rent-container h4 a:hover{margin-top: 0}
+                .car-rent-container img{display:block;width:100%;height:15em;border-radius:0.5em;-o-object-fit:cover;object-fit:cover}
+                .car-rent-general{margin-top:2em;padding:1em 1.5em 4em;border-radius:0.5em;background-color:#fff}.car-rent-general h3{margin-bottom:1em;font-size:2em}
+                .car-rent-general h4{margin-bottom:1em;font-size:1.4em;color:#f36f22}.car-rent-general table{font-size:0.6em;text-align:left;border-collapse:collapse}
+                .car-rent-general table td,.car-rent-general table th{padding:1em;border:none}.car-rent-general table th{width:10em}
                 .car-rent-general tr:nth-of-type(odd){background-color:#f1f1f1}@media (min-width:768px){.car-rent-container{font-size:20px}.car-rent-wrp{width:80%;margin:0 auto}
-                .car-rent-container img{height:25em}}@media (min-width:964px){.car-rent-container h2{font-size:2.5em;margin-bottom:2em}.car-rent-general{padding:4em}}
+                .car-rent-container img{height:25em}}@media (min-width:964px){.car-rent-container h2{font-size:2.5em;}.car-rent-general{padding:4em}}
                 @media (min-width:1400px){.car-rent-container{font-size:25px}.car-rent-container h2{font-size:3em}.car-rent-wrp{width:70%}}
             </style>
             <div class="car-rent-container">
@@ -53,11 +53,11 @@ export default function (req, res) {
                             </tr>
                             <tr>
                                 <th>Price per hour:</th>
-                                <td>${price}</td>
+                                <td>$${price}</td>
                             </tr>
                             <tr>
                                 <th>Total rent time:</th>
-                                <td>${total}</td>
+                                <td>${total} hours</td>
                             </tr>
                             <tr>
                                 <th>Total cost time:</th>
