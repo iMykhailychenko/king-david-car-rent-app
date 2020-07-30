@@ -1,6 +1,7 @@
 import 'date-fns';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import Grid from '@material-ui/core/Grid';
@@ -15,6 +16,7 @@ import useStyles from './checkin-date.styles';
 
 const CheckinDate = () => {
     const styles = useStyles();
+    const matches = useMediaQuery('(max-width:1200px)');
 
     // date objects
     const dispatch = useDispatch();
@@ -43,8 +45,8 @@ const CheckinDate = () => {
 
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid container spacing={10}>
-                <Grid className={styles.container} item xs={6}>
+            <Grid container spacing={matches ? 1 : 10}>
+                <Grid className={styles.container} item xs={12} md={6}>
                     <Typography className={styles.title} variant="h5" component="h3">
                         From
                     </Typography>
@@ -61,7 +63,7 @@ const CheckinDate = () => {
                     />
                 </Grid>
 
-                <Grid className={styles.container} item xs={6}>
+                <Grid className={styles.container} item xs={12} md={6}>
                     <Typography className={styles.title} variant="h5" component="h3">
                         To
                     </Typography>

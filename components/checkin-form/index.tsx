@@ -55,7 +55,7 @@ const CheckinForm = () => {
 
     return (
         <Grid className={styles.container} container spacing={5}>
-            <Grid className={styles.root} item xs={4}>
+            <Grid className={styles.root} item xs={12} md={4}>
                 <Typography className={styles.title} variant="h5" component="h3">
                     Personal information
                 </Typography>
@@ -109,7 +109,7 @@ const CheckinForm = () => {
                 </form>
             </Grid>
 
-            <Grid className={styles.root} item xs={8}>
+            <Grid className={styles.root} item xs={12} md={8}>
                 <SingleCar />
             </Grid>
         </Grid>

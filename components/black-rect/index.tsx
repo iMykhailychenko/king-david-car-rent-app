@@ -10,7 +10,7 @@ const BlackRect = () => {
     return (
         <Grid container>
             <Paper className={styles.paper} elevation={0}>
-                <Grid item xs={5}>
+                <Grid item xs={12} md={5}>
                     <Typography className={styles.title} variant="h5" component="h3">
                         #Unlock the world with us!
                     </Typography>

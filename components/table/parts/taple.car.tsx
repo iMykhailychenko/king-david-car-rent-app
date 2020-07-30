@@ -21,8 +21,7 @@ const Car = () => {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell className={styles.head}>Car information</TableCell>
-                        <TableCell className={styles.head}></TableCell>
+                        <TableCell className={styles.head} colSpan={2}>Car information</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

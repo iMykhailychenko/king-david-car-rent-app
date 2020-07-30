@@ -23,7 +23,7 @@ const CarCard = () => {
     return (
         <Grid className={styles.container} container spacing={5}>
             {cars.map(({ id, title, text, price, img, rating }) => (
-                <Grid item xs={4} key={id}>
+                <Grid item xs={12} sm={6} lg={4} key={id}>
                     <Card className={styles.root}>
                         <CardHeader title={title} subheader={price + ' $/hour'} />
 

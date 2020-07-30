@@ -25,8 +25,7 @@ const User = () => {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell className={styles.head}>Your personal data</TableCell>
-                        <TableCell className={styles.head}></TableCell>
+                        <TableCell className={styles.head} colSpan={2}>Your personal data</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

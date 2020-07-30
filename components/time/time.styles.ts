@@ -4,6 +4,10 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         container: {
             marginTop: theme.spacing(20),
+            '@media (max-width: 1200px)': {
+                marginTop: theme.spacing(5),
+                marginBottom: theme.spacing(10),
+            }
         },
         slider: {
             paddingLeft: theme.spacing(3),

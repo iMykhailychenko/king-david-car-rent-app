@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -23,10 +24,11 @@ const getSteps = (): string[] => ['Select rent duration', 'Choose rent location'
 const MyStepper = () => {
     const styles = useStyles();
     const steps = getSteps();
-    const activeStep = useSelector((state: IState): number => state.activeStep)
+    const activeStep = useSelector((state: IState): number => state.activeStep);
+    const matches = useMediaQuery('(max-width:550px)');
 
     return (
-        <Stepper className={styles.root} activeStep={activeStep} alternativeLabel>
+        <Stepper className={styles.root} activeStep={activeStep} orientation={matches ? 'vertical' : 'horizontal'} alternativeLabel={!matches}>
             {steps.map((label) => (
                 <Step key={label}>
                     <StepLabel>{label}</StepLabel>

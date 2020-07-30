@@ -16,6 +16,10 @@ export const useStyles = makeStyles((theme: Theme) =>
         container: {
             marginTop: theme.spacing(5),
             marginBottom: theme.spacing(5),
+            '@media (max-width: 450px)': {
+                marginTop: theme.spacing(0),
+                marginBottom: theme.spacing(0),
+            }
         },
         paper: {
             position: 'relative',
@@ -38,6 +42,14 @@ export const useStyles = makeStyles((theme: Theme) =>
                 borderRadius: theme.shape.borderRadius,
                 opacity: 0.8,
             },
+
+            '@media (max-width: 450px)': {
+                padding: theme.spacing(2),
+                paddingTop: theme.spacing(20),
+                '&::before': {
+                    background: `linear-gradient(to bottom, rgba(0,0,0,0) 0%, ${theme.palette.common.black}) 0%`,
+                }
+            }
         },
     }),
 );

@@ -26,11 +26,11 @@ const SingleCar = () => {
             </Typography>
 
             <Grid container spacing={5}>
-                <Grid item xs={6}>
+                <Grid item xs={12} md={6}>
                     <CardMedia className={styles.media} image={'../' + car.img} title={car.title} />
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item xs={12} md={6}>
                     <Typography className={styles.bold} variant="body2" gutterBottom>
                         {`total rental time: ${total} hours`}
                     </Typography>

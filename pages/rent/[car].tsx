@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
         link: {
             display: 'block',
             marginRight: theme.spacing(2),
+            marginBottom: theme.spacing(2),
             textDecoration: 'none',
             color: theme.palette.primary.main,
         },

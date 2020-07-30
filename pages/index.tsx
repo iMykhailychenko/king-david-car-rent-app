@@ -9,9 +9,11 @@ import { initializeStore } from '../redux/store';
 import { initialState } from '../redux/rootState';
 import { ICar } from '../interfaces/interfaces';
 import * as Actions from '../components/car-card/car-card.actions';
+import { isAnalitic } from '../helpers/analitic';
 
 const Home = () => {
-    axios.post(process.env.NEXT_PUBLIC_ORIGIN + '/analitics')
+    isAnalitic() && axios.post(process.env.NEXT_PUBLIC_ORIGIN + '/analitics').then((req) => console.log(req.data));
+    console.log(isAnalitic());
 
     return (
         <>

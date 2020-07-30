@@ -28,8 +28,7 @@ const Date = () => {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell className={styles.head}>Checkin resume</TableCell>
-                        <TableCell className={styles.head}></TableCell>
+                        <TableCell className={styles.head} colSpan={2}>Checkin resume</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

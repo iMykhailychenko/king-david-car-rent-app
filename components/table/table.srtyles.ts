@@ -14,6 +14,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
         width: '30%',
     },
     img: {
-        height: theme.spacing(30),
+        height: theme.spacing(40),
+        '@media (max-width: 450px)': {
+            height: theme.spacing(30),
+            width: '100%',
+            objectFit: 'cover',
+        }
     }
 }));

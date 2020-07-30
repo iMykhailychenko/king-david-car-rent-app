@@ -8,11 +8,13 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         wrp: {
             display: 'flex',
+            flexWrap: 'wrap',
             marginTop: theme.spacing(8),
         },
         link: {
             display: 'block',
             marginRight: theme.spacing(2),
+            marginBottom: theme.spacing(2),
             textDecoration: 'none',
             color: theme.palette.primary.main,
         },

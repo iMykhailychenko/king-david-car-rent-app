@@ -5,6 +5,11 @@ const useStyles = makeStyles((theme: Theme) =>
         container: {
             marginTop: theme.spacing(15),
             marginBottom: theme.spacing(15),
+            '@media (max-width: 1200px)': {
+                display: 'flex',
+            flexDirection: 'column-reverse',
+                marginTop: theme.spacing(0),
+            }
         },
         root: {
             display: 'flex',

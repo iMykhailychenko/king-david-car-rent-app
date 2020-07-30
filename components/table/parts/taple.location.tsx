@@ -20,8 +20,7 @@ const Location = () => {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell className={styles.head}>Checkin location</TableCell>
-                        <TableCell className={styles.head}></TableCell>
+                        <TableCell className={styles.head} colSpan={2}>Checkin location</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

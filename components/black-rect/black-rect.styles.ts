@@ -16,6 +16,11 @@ const useStyles = makeStyles((theme: Theme) =>
             paddingTop: theme.spacing(30),
             background: theme.palette.grey['900'],
             color: theme.palette.primary.contrastText,
+            '@media (max-width: 450px)': {
+                marginBottom: theme.spacing(4),
+                padding: theme.spacing(2),
+                paddingTop: theme.spacing(20),
+            }
         },
     }),
 );
