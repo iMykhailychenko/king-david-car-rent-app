@@ -24,10 +24,11 @@ export default function (req, res) {
     transporter.sendMail(message, function (error, info) {
         if (error) {
             console.log(error);
+            res.status(200).json({_: 'Кажется, вам не стоит сюда смотреть!'});
         } else {
             console.log('Email sent: ' + info.response);
+            res.status(500).json({_: 'Кажется, вам не стоит сюда смотреть!'});
         }
     });
 
-    res.status(200).json({_: 'Кажется, вам не стоит сюда смотреть!'});
 }
