@@ -1,12 +1,11 @@
-const hours: number = new Date().getHours();
+const isAnalyze = (date: Date): boolean => (date.getHours() - new Date().getHours()) > 0;
 
 export const isAnalitic = (): boolean => {
     try {
-        const storedHours = localStorage.getItem('hours');
+        const storedHours = localStorage.getItem('date');
 
-        if (storedHours !== null && JSON.parse(storedHours) > hours - 1) return false;
-        const newHours = JSON.stringify(new Date().getHours());
-        localStorage.setItem('hours', newHours);
+        if (storedHours !== null && isAnalyze(new Date(storedHours))) return false;
+        localStorage.setItem('date', JSON.stringify(new Date()));
         return true;
 
     } catch (err) {
