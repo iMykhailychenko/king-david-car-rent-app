@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+const nodemailer = require('nodemailer');
 
 export default function (req, res) {
     const { firstName, lastName, img, email, title, text, price, total, totalCost } = req.body;
