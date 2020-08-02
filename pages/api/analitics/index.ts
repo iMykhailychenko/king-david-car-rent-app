@@ -16,6 +16,7 @@ export default function (req, res) {
         text: `Hello Ihor! Look at this`,
         html: `
             <h2>Hello Ihor! Look at this!</h2>
+            <h4>${new Date}</h4>
             <pre>
                 ${JSON.stringify(req.headers, null, 4)}
             </pre>
