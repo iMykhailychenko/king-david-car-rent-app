@@ -1,4 +1,4 @@
-const isAnalyze = (date: Date): boolean => (date.getHours() - new Date().getHours()) > 0;
+const isAnalyze = (date: Date): boolean => !(date.getHours() - new Date().getHours());
 
 export const isAnalitic = (): boolean => {
     try {
