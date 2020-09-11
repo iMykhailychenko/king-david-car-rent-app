@@ -1,7 +1,6 @@
 ## King David / Test task
 
-> In programming purposes.
-
+> In programming purposes.  
 > At this time I'm not seeking to change jobs.
 
 ```You can open live page by folowing this link``` - https://car-rent-theta.vercel.app/
