@@ -14,8 +14,7 @@ export default function (req, res) {
     const message = {
         from: 'Car rent application <ihor.mykh@outlook.com>',
         to: email,
-        subject: `Rent a car "${title}"`,
-        text: `Hello! ${firstName} ${lastName}`,
+        subject: `Rent a car "${title}" | Hello! ${firstName} ${lastName}`,
         html: `
             <style>
                 .car-rent-container{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background-color:#f1f1f1;font-size:10px}
@@ -31,6 +30,7 @@ export default function (req, res) {
             </style>
             <div class="car-rent-container">
                 <div class="car-rent-wrp">
+                    <h3>Hello! ${firstName} ${lastName}</h3>
                     <h2>
                         You have booked a car on the
                         <a href="https://car-rent-theta.vercel.app" target="_blank" rel="noopener noreferrer">
