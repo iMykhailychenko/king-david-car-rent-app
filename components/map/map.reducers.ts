@@ -1,7 +1,7 @@
+import { IPlaceAction, SET_PLACE } from '../places/places.types';
 import * as types from './map.types';
-import { SET_PLACE, IPlaceAction } from '../places/places.types';
 
-export const address = (url: string = '', action: types.IMap | IPlaceAction): string => {
+export const address = (url = '', action: types.IMap | IPlaceAction): string => {
     switch (action.type) {
         case types.SET_MAP:
             return action.payload;

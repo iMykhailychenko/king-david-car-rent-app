@@ -22,3 +22,8 @@ export interface ICheckin {
     lastName: string;
     email: string;
 }
+
+export interface IMarker {
+    lat: number;
+    lng: number;
+}

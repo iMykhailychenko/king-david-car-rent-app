@@ -1,10 +1,11 @@
-import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import React, { ReactElement } from 'react';
+
 import useStyles from './black-rect.styles';
 
-const BlackRect = () => {
+const BlackRect = (): ReactElement => {
     const styles = useStyles();
 
     return (
@@ -15,8 +16,8 @@ const BlackRect = () => {
                         #Unlock the world with us!
                     </Typography>
                     <Typography className={styles.subtitle} variant="subtitle2">
-                        Our fleet ranges from small cars for a busy day in town to larger vehicles, which would make the
-                        perfect accompaniment for the family holiday.
+                        Our fleet ranges from small cars for a busy day in town to larger vehicles, which would make the perfect
+                        accompaniment for the family holiday.
                     </Typography>
                 </Grid>
             </Paper>

@@ -1,16 +1,17 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { close } from './success.actions';
-import { successSelector } from '../../redux/selectors';
+import { useRouter } from 'next/router';
+import React, { ReactElement } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-const Success = () => {
+import { successSelector } from '../../redux/selectors';
+import { close } from './success.actions';
+
+const Success = (): ReactElement => {
     const dispatch = useDispatch();
     const router = useRouter();
     const { open, text } = useSelector(successSelector);
@@ -32,7 +33,7 @@ const Success = () => {
                 <DialogContentText id="alert-dialog-description">{text}</DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose} color="primary" autoFocus>
+                <Button onClick={handleClose} color="primary">
                     Ok
                 </Button>
             </DialogActions>

@@ -1,19 +1,20 @@
-import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
 import Grid from '@material-ui/core/Grid';
+import Slider from '@material-ui/core/Slider';
+import Typography from '@material-ui/core/Typography';
+import React, { ChangeEvent, ReactElement } from 'react';
+
 import { IDate } from '../../interfaces/interfaces';
-import useStyles from './time.styles';
 import marks from './time.marks';
+import useStyles from './time.styles';
 
 interface IProps {
     title: string;
     date: IDate;
     track?: false | 'normal' | 'inverted';
-    onChange(event: any, value: number): void;
+    onChange(event: ChangeEvent, value: number): void;
 }
 
-const Time = ({ title, date, track = 'normal', onChange }: IProps) => {
+const Time = ({ title, date, track = 'normal', onChange }: IProps): ReactElement => {
     const styles = useStyles();
 
     return (

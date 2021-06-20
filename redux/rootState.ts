@@ -1,7 +1,7 @@
-import { ICar, IDate } from '../interfaces/interfaces';
-import { createInitDateObj, createCustomDateObj } from '../helpers/dateUtils';
 import { IModal } from '../components/modal/modal.types';
-import { IPlace, initPlace } from '../components/places/places.types';
+import { initPlace, IPlace } from '../components/places/places.types';
+import { createCustomDateObj, createInitDateObj } from '../helpers/dateUtils';
+import { ICar, IDate } from '../interfaces/interfaces';
 
 export interface IState {
     checkin: {
@@ -13,7 +13,7 @@ export interface IState {
         firstName: string;
         lastName: string;
         email: string;
-    }
+    };
     cars: {
         list: {
             loading: boolean;

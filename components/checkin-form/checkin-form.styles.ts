@@ -1,4 +1,4 @@
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -7,9 +7,9 @@ const useStyles = makeStyles((theme: Theme) =>
             marginBottom: theme.spacing(15),
             '@media (max-width: 1200px)': {
                 display: 'flex',
-            flexDirection: 'column-reverse',
+                flexDirection: 'column-reverse',
                 marginTop: theme.spacing(0),
-            }
+            },
         },
         root: {
             display: 'flex',

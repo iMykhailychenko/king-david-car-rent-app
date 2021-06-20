@@ -1,5 +1,6 @@
-import React from 'react';
 import { DatePicker } from '@material-ui/pickers';
+import React, { ReactElement } from 'react';
+
 import { createInitDateObj } from '../../helpers/dateUtils';
 
 interface IProps {
@@ -8,7 +9,7 @@ interface IProps {
     onChange(date: Date): void;
 }
 
-const Calendar = ({ date, start, onChange }: IProps) => (
+const Calendar = ({ date, start, onChange }: IProps): ReactElement => (
     <DatePicker
         minDate={createInitDateObj(start)}
         autoOk

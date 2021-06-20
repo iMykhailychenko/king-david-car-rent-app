@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import * as types from './car-card.types';
-import { ICar } from '../../interfaces/interfaces';
 
-const loading = (loading: boolean = false, action: types.ActionTypes): boolean => {
+import { ICar } from '../../interfaces/interfaces';
+import * as types from './car-card.types';
+
+const loading = (loading = false, action: types.ActionTypes): boolean => {
     switch (action.type) {
         case types.GET_CARS_LIST_START:
             return true;
@@ -25,7 +26,7 @@ const value = (items: ICar[] = [], action: types.ActionTypes): ICar[] => {
     }
 };
 
-const error = (error: string = '', action: types.ActionTypes): string => {
+const error = (error = '', action: types.ActionTypes): string => {
     switch (action.type) {
         case types.GET_CARS_LIST_START:
         case types.GET_CARS_LIST_SUCCESS:

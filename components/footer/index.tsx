@@ -1,7 +1,5 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-interface Props {}
-
-const Footer: React.FC<Props> = () => <footer className="alert alert-secondary my-4 mx-auto p-4"></footer>;
+const Footer = (): ReactElement => <footer className="alert alert-secondary my-4 mx-auto p-4" />;
 
 export default Footer;

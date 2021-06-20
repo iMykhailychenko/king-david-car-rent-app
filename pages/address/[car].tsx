@@ -1,23 +1,25 @@
-import React from 'react';
+import Button from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
+import Container from '@material-ui/core/Container';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import AlarmOnIcon from '@material-ui/icons/AlarmOn';
+import RoomIcon from '@material-ui/icons/Room';
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useSelector, useDispatch } from 'react-redux';
-import Container from '@material-ui/core/Container';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Chip from '@material-ui/core/Chip';
-import Button from '@material-ui/core/Button';
-import AlarmOnIcon from '@material-ui/icons/AlarmOn';
-import RoomIcon from '@material-ui/icons/Room';
-import ToHomeLink from '../../components/to-home-link';
-import MyStepper from '../../components/stepper';
-import Places from '../../components/places';
+import React, { ReactElement } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Map from '../../components/map';
-import { initializeStore } from '../../redux/store';
-import { initialState, IState } from '../../redux/rootState';
-import { IPlace } from '../../components/places/places.types';
 import { open } from '../../components/modal/modal.actions';
+import Places from '../../components/places';
+import { IPlace } from '../../components/places/places.types';
+import MyStepper from '../../components/stepper';
 import { setRentStep } from '../../components/stepper/stepper.actions';
+import ToHomeLink from '../../components/to-home-link';
+import { initialState, IState } from '../../redux/rootState';
+import { initializeStore } from '../../redux/store';
 
 const warn = 'Please, select a city in the search bar!';
 
@@ -47,7 +49,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const Address = () => {
+const Address = (): ReactElement => {
     const styles = useStyles();
     const dispatch = useDispatch();
     const router = useRouter();
@@ -115,7 +117,7 @@ const Address = () => {
 };
 
 // get cars on server side
-export const getServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
     const reduxStore = initializeStore(initialState);
     return { props: { state: reduxStore.getState() } };
 };

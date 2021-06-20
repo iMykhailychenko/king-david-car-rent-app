@@ -9,18 +9,20 @@ export interface IPlace {
         offset: number;
         length: number;
     }[];
-};
+}
 
 export const initPlace: IPlace = {
     id: '',
     description: '',
     main_text: '',
     secondary_text: '',
-    matched: [{
-        offset: 0,
-        length: 0,
-    }],
-}
+    matched: [
+        {
+            offset: 0,
+            length: 0,
+        },
+    ],
+};
 
 export interface IPlaceAction {
     type: typeof SET_PLACE;

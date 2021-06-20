@@ -1,23 +1,24 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import { useSelector, useDispatch } from 'react-redux';
-import { useFormik } from 'formik';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import { useFormik } from 'formik';
+import { useRouter } from 'next/router';
+import React, { ReactElement } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { isCorrectEnd, isCorrectStart } from '../../helpers/dateUtils';
+import { ICheckin, IDate } from '../../interfaces/interfaces';
+import { IState } from '../../redux/rootState';
+import { getCheckinFrom, getCheckinTo } from '../../redux/selectors';
+import { open } from '../modal/modal.actions';
 import SingleCar from '../single-car';
-import useStyles from './checkin-form.styles';
-import * as form from './checkin-form.form';
 import { setRentStep } from '../stepper/stepper.actions';
 import { formActions } from './checkin-form.actions';
-import { open } from '../modal/modal.actions';
-import { getCheckinFrom, getCheckinTo } from '../../redux/selectors';
-import { IState } from '../../redux/rootState';
-import { isCorrectStart, isCorrectEnd } from '../../helpers/dateUtils';
-import { ICheckin, IDate } from '../../interfaces/interfaces';
+import * as form from './checkin-form.form';
+import useStyles from './checkin-form.styles';
 
-const CheckinForm = () => {
+const CheckinForm = (): ReactElement => {
     const dispatch = useDispatch();
     const router = useRouter();
     const styles = useStyles();
@@ -31,7 +32,7 @@ const CheckinForm = () => {
     const formik = useFormik({
         initialValues: value,
         validationSchema: form.userSchema,
-        onSubmit: (values) => {
+        onSubmit: values => {
             if (!isCorrectStart(dateFrom, 2)) {
                 dispatch(open(form.warn.start));
                 return;
@@ -68,11 +69,7 @@ const CheckinForm = () => {
                         error={formik.touched.firstName && !!formik.errors.firstName}
                         value={formik.values.firstName}
                         onChange={formik.handleChange}
-                        label={
-                            formik.touched.firstName && !!formik.errors.firstName
-                                ? formik.errors.firstName
-                                : 'First name'
-                        }
+                        label={formik.touched.firstName && !!formik.errors.firstName ? formik.errors.firstName : 'First name'}
                         variant="outlined"
                         fullWidth
                     />
@@ -84,9 +81,7 @@ const CheckinForm = () => {
                         error={formik.touched.lastName && !!formik.errors.lastName}
                         value={formik.values.lastName}
                         onChange={formik.handleChange}
-                        label={
-                            formik.touched.lastName && !!formik.errors.lastName ? formik.errors.lastName : 'Last name'
-                        }
+                        label={formik.touched.lastName && !!formik.errors.lastName ? formik.errors.lastName : 'Last name'}
                         variant="outlined"
                         fullWidth
                     />

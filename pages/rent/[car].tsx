@@ -1,20 +1,22 @@
-import React, { useEffect } from 'react';
-import Head from 'next/head';
-import { useDispatch } from 'react-redux';
-import axios from 'axios';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Container from '@material-ui/core/Container';
-import ToHomeLink from '../../components/to-home-link';
-import MyStepper from '../../components/stepper';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import AlarmOnIcon from '@material-ui/icons/AlarmOn';
+import axios from 'axios';
+import { GetServerSideProps } from 'next';
+import Head from 'next/head';
+import React, { ReactElement, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import CheckinDate from '../../components/checkin-date';
 import CheckinForm from '../../components/checkin-form';
-import { initializeStore } from '../../redux/store';
-import { initialState } from '../../redux/rootState';
-import { ICar } from '../../interfaces/interfaces';
 import * as Actions from '../../components/single-car/single-car.actions';
+import MyStepper from '../../components/stepper';
 import { setRentStep } from '../../components/stepper/stepper.actions';
-import AlarmOnIcon from '@material-ui/icons/AlarmOn';
+import ToHomeLink from '../../components/to-home-link';
+import { ICar } from '../../interfaces/interfaces';
+import { initialState } from '../../redux/rootState';
+import { initializeStore } from '../../redux/store';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -34,10 +36,13 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const Checkin = () => {
+const Checkin = (): ReactElement => {
     const dispatch = useDispatch();
     const styles = useStyles();
-    dispatch(setRentStep(0));
+
+    useEffect(() => {
+        dispatch(setRentStep(0));
+    }, [dispatch]);
 
     return (
         <>
@@ -67,7 +72,7 @@ const Checkin = () => {
 };
 
 // get cars on server side
-export const getServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async context => {
     // store
     const reduxStore = initializeStore(initialState);
     const { dispatch } = reduxStore;

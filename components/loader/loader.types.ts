@@ -11,4 +11,4 @@ export interface ILoadingEnd {
     payload: boolean;
 }
 
-export type ILoading = ILoadingStart | ILoadingEnd
+export type ILoading = ILoadingStart | ILoadingEnd;

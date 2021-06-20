@@ -1,12 +1,14 @@
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { ReactElement } from 'react';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import Modal from '../components/modal';
+
 import Loader from '../components/loader';
+import Modal from '../components/modal';
 import Success from '../components/success';
 import { useStore } from '../redux/store';
 
@@ -23,7 +25,7 @@ const theme = createMuiTheme({
     },
 });
 
-const CustomApp = ({ Component, pageProps }: AppProps) => {
+const CustomApp = ({ Component, pageProps }: AppProps): ReactElement => {
     const store = useStore(pageProps.state);
     const persistor = persistStore(store);
 

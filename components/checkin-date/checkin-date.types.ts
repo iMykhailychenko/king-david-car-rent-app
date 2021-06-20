@@ -17,7 +17,4 @@ interface ICheckinDone {
     payload: boolean;
 }
 
-export type ActionTypes =
-    | ICheckinDateFrom
-    | ICheckinDateTo
-    | ICheckinDone
+export type ActionTypes = ICheckinDateFrom | ICheckinDateTo | ICheckinDone;

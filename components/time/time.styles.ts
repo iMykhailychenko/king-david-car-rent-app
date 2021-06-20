@@ -1,4 +1,4 @@
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme: Theme) =>
             '@media (max-width: 1200px)': {
                 marginTop: theme.spacing(5),
                 marginBottom: theme.spacing(10),
-            }
+            },
         },
         slider: {
             paddingLeft: theme.spacing(3),

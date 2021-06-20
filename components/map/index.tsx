@@ -1,11 +1,13 @@
-import React, { memo, useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import MapContainer from './map.container.js';
+import axios from 'axios';
+import { GoogleApiWrapper } from 'google-maps-react';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { IMarker } from '../../interfaces/interfaces';
 import { IState } from '../../redux/rootState';
 import { open } from '../modal/modal.actions';
-import axios from 'axios';
+import MapContainer from './map.container.jsx';
 
 const useStyles = makeStyles((theme: Theme) => ({
     map: {
@@ -18,29 +20,18 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
 }));
 
-const mapStyles = {
-    width: '100%',
-    height: '100%',
-    borderRadius: '10px',
-};
-
-interface IMarker {
-    lat: number;
-    lng: number;
-}
-
 const KIEV: IMarker = { lat: 50.45, lng: 30.5242 };
 const isCyrillic = (text: string): boolean => /[а-я]/i.test(text);
 const warn = 'You may have forgotten to change your keyboard layout! Please enter the city name in latin alphabet';
 
 interface IProps {
     google: {
-        maps: any;
+        maps: unknown;
     };
     loaded: boolean;
 }
 
-const MyMap = (props: IProps) => {
+const MyMap = (props: IProps): ReactElement => {
     const styles = useStyles();
     const dispatch = useDispatch();
     const address = useSelector((state: IState): string => state.address);

@@ -1,4 +1,4 @@
-import { Theme, makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme: Theme) => ({
     table: {
@@ -19,6 +19,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
             height: theme.spacing(30),
             width: '100%',
             objectFit: 'cover',
-        }
-    }
+        },
+    },
 }));

@@ -1,10 +1,11 @@
 import { useMemo } from 'react';
-import { createStore, applyMiddleware, Store } from 'redux';
+import { applyMiddleware, createStore, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
-import reducers from './reducers';
+
 import { setCheckinDate } from './middleware/setCheckinDate';
-import { IState, initialState } from './rootState';
+import reducers from './reducers';
+import { IState } from './rootState';
 
 let store: Store;
 
@@ -34,6 +35,4 @@ export const initializeStore = (initState: IState): Store => {
     return _store;
 };
 
-export const useStore = (initialState: IState): Store =>
-    useMemo(() => initializeStore(initialState), [initialState]);
-
+export const useStore = (initialState: IState): Store => useMemo(() => initializeStore(initialState), [initialState]);

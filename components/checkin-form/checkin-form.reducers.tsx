@@ -1,5 +1,5 @@
-import * as types from './checkin-form.types';
 import { ICheckin } from '../../interfaces/interfaces';
+import * as types from './checkin-form.types';
 
 export const form = (
     step: ICheckin = {

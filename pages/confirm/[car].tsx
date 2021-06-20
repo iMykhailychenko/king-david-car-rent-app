@@ -1,29 +1,31 @@
-import React from 'react';
+import Button from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
+import Container from '@material-ui/core/Container';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import AlarmOnIcon from '@material-ui/icons/AlarmOn';
+import AssistantPhotoIcon from '@material-ui/icons/AssistantPhoto';
+import RoomIcon from '@material-ui/icons/Room';
+import axios from 'axios';
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Chip from '@material-ui/core/Chip';
-import Button from '@material-ui/core/Button';
-import AlarmOnIcon from '@material-ui/icons/AlarmOn';
-import RoomIcon from '@material-ui/icons/Room';
-import AssistantPhotoIcon from '@material-ui/icons/AssistantPhoto';
-import ToHomeLink from '../../components/to-home-link';
-import MyStepper from '../../components/stepper';
-import FinalTable from '../../components/table';
-import * as Actions from '../../components/single-car/single-car.actions';
-import * as Success from '../../components/success/success.actions';
-import * as Warn from '../../components/modal/modal.actions';
+import React, { ReactElement } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import * as Loader from '../../components/loader/loader.actions';
-import { initializeStore } from '../../redux/store';
-import { initialState, IState } from '../../redux/rootState';
-import { getSingleCarSelector, getCheckinFrom, getCheckinTo } from '../../redux/selectors';
+import * as Warn from '../../components/modal/modal.actions';
+import * as Actions from '../../components/single-car/single-car.actions';
+import MyStepper from '../../components/stepper';
+import * as Success from '../../components/success/success.actions';
+import FinalTable from '../../components/table';
+import ToHomeLink from '../../components/to-home-link';
 import { totlaCheckinTime } from '../../helpers/dateUtils';
-import formatePrice from '../../helpers/priceFormate';
-import { IDate, ICar } from '../../interfaces/interfaces';
+import formatPrice from '../../helpers/priceFormate';
+import { ICar, IDate } from '../../interfaces/interfaces';
+import { initialState, IState } from '../../redux/rootState';
+import { getCheckinFrom, getCheckinTo, getSingleCarSelector } from '../../redux/selectors';
+import { initializeStore } from '../../redux/store';
 
 interface IForm {
     firstName: string;
@@ -60,7 +62,7 @@ export const useStyles = makeStyles((theme: Theme) =>
 const warn = 'Network error, please try again later';
 const success = 'Hooray! The booking was successful. A confirmation has been sent to your email!';
 
-const Confirm = () => {
+const Confirm = (): ReactElement => {
     const dispatch = useDispatch();
     const styles = useStyles();
     const router = useRouter();
@@ -75,9 +77,9 @@ const Confirm = () => {
     const dateFrom: IDate = useSelector(getCheckinFrom);
     const dateTo: IDate = useSelector(getCheckinTo);
     const total: number = totlaCheckinTime(dateFrom, dateTo);
-    const totalCost: string = formatePrice(total * car.price);
+    const totalCost: string = formatPrice(total * car.price);
 
-    // steper
+    // stepper
     const activeStep = useSelector((state: IState): number => state.activeStep);
 
     // push history
@@ -92,11 +94,11 @@ const Confirm = () => {
 
         axios
             .post(process.env.NEXT_PUBLIC_ORIGIN + '/confirm', { ...form, ...car, total, totalCost })
-            .then((data) => {
+            .then(() => {
                 dispatch(Loader.end());
                 dispatch(Success.open(success));
             })
-            .catch((error) => {
+            .catch(error => {
                 dispatch(Loader.end());
                 dispatch(Warn.open(warn));
                 console.log(error);
@@ -152,7 +154,7 @@ const Confirm = () => {
 };
 
 // get cars on server side
-export const getServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async context => {
     // store
     const reduxStore = initializeStore(initialState);
     const { dispatch } = reduxStore;

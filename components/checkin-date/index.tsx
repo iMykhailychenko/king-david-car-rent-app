@@ -1,20 +1,22 @@
 import 'date-fns';
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import React, { ReactElement } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { createCustomDateObj, createNativeDateObj } from '../../helpers/dateUtils';
+import { IDate } from '../../interfaces/interfaces';
+import { getCheckinFrom, getCheckinTo } from '../../redux/selectors';
 import Calendar from '../calendar';
 import Time from '../time';
 import { checkinFromDate, checkinToDate } from './checkin-date.actions';
-import { getCheckinFrom, getCheckinTo } from '../../redux/selectors';
-import { createNativeDateObj, createCustomDateObj, isCorrectEnd, createEndDateObj } from '../../helpers/dateUtils';
-import { IDate } from '../../interfaces/interfaces';
 import useStyles from './checkin-date.styles';
 
-const CheckinDate = () => {
+const CheckinDate = (): ReactElement => {
     const styles = useStyles();
     const matches = useMediaQuery('(max-width:1200px)');
 
@@ -34,12 +36,12 @@ const CheckinDate = () => {
     };
 
     // time handlers
-    const handleChangeTimeFrom = (_: any, time: number): void => {
+    const handleChangeTimeFrom = (_: unknown, time: number): void => {
         const customDateObj = { ...dateFrom, time };
         dispatch(checkinFromDate(customDateObj));
     };
 
-    const handleChangeTimeTo = (_: any, time: number): void => {
+    const handleChangeTimeTo = (_: unknown, time: number): void => {
         dispatch(checkinToDate({ ...dateTo, time }));
     };
 
@@ -51,16 +53,11 @@ const CheckinDate = () => {
                         From
                     </Typography>
                     <Typography className={styles.text} variant="body1">
-                        Checkout time must be bigger than checkin. Checkin can be only in the next 2 hours (from current
-                        time and not sooner).
+                        Checkout time must be bigger than checkin. Checkin can be only in the next 2 hours (from current time and
+                        not sooner).
                     </Typography>
                     <Calendar date={createNativeDateObj(dateFrom)} start={2} onChange={handleChangeFrom} />
-                    <Time
-                        title="Select begining time"
-                        date={dateFrom}
-                        track="inverted"
-                        onChange={handleChangeTimeFrom}
-                    />
+                    <Time title="Select begining time" date={dateFrom} track="inverted" onChange={handleChangeTimeFrom} />
                 </Grid>
 
                 <Grid className={styles.container} item xs={12} md={6}>

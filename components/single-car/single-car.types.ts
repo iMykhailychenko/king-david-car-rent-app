@@ -20,7 +20,4 @@ interface IGetSingleCartError {
     payload: string;
 }
 
-export type ActionTypes =
-    | IGetSingleCartStart
-    | IGetSingleCartSuccess
-    | IGetSingleCartError;
+export type ActionTypes = IGetSingleCartStart | IGetSingleCartSuccess | IGetSingleCartError;

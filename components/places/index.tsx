@@ -1,23 +1,24 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import parse from 'autosuggest-highlight/parse';
 import axios from 'axios';
 import debounce from 'lodash.debounce';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import parse from 'autosuggest-highlight/parse';
-import { useStyles } from './places.styles';
-import { IPlace, initPlace } from './places.types';
-import { place } from './places.actions';
-import { open } from '../modal/modal.actions';
+import React, { ReactElement, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { IState } from '../../redux/rootState';
+import { open } from '../modal/modal.actions';
+import { place } from './places.actions';
+import { useStyles } from './places.styles';
+import { initPlace, IPlace } from './places.types';
 
 const isCyrillic = (text: string): boolean => /[а-я]/i.test(text);
 const warn = 'You may have forgotten to change your keyboard layout! Please enter the city name in latin alphabet';
 
-const Places = () => {
+const Places = (): ReactElement => {
     const dispatch = useDispatch();
     const styles = useStyles();
     const stateValue = useSelector((state: IState): IPlace => state.place);
@@ -37,7 +38,7 @@ const Places = () => {
                 .then((res: { data: IPlace[] }): void => {
                     setOptions(res.data);
                 })
-                .catch((error) => {
+                .catch(error => {
                     console.error(error);
                     setValue(initPlace);
                     setOptions([initPlace]);
@@ -52,14 +53,14 @@ const Places = () => {
             </Typography>
 
             <Typography className={styles.text} variant="body1">
-                Whether you want to visit the main attractions or find those hidden gems only accessible by car, with
-                more than +100500 car rental located around the world.
+                Whether you want to visit the main attractions or find those hidden gems only accessible by car, with more than
+                +100500 car rental located around the world.
             </Typography>
 
             <Autocomplete
-                getOptionLabel={(option) => (typeof option === 'string' ? option : option.description)}
+                getOptionLabel={option => (typeof option === 'string' ? option : option.description)}
                 getOptionSelected={(option, value) => option.id === value.id}
-                filterOptions={(x) => x}
+                filterOptions={x => x}
                 options={options}
                 autoComplete
                 includeInputInList
@@ -70,12 +71,12 @@ const Places = () => {
                     dispatch(place(newValue));
                 }}
                 onInputChange={debounce(handleChange, 300)}
-                renderInput={(params) => <TextField {...params} label="Add a location" variant="outlined" fullWidth />}
-                renderOption={(option) => {
+                renderInput={params => <TextField {...params} label="Add a location" variant="outlined" fullWidth />}
+                renderOption={option => {
                     const matches = option.matched;
                     const parts = parse(
                         option.main_text,
-                        matches.map((match: any) => [match.offset, match.offset + match.length]),
+                        matches.map(match => [match.offset, match.offset + match.length]),
                     );
 
                     return (

@@ -7,8 +7,7 @@ export const isAnalitic = (): boolean => {
         if (storedHours !== null && isAnalyze(new Date(storedHours))) return false;
         localStorage.setItem('date', JSON.stringify(new Date()));
         return true;
-
     } catch (err) {
         return true;
     }
-}
+};

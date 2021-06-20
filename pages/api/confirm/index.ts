@@ -1,6 +1,8 @@
+import { NextApiRequest, NextApiResponse } from 'next';
+
 const nodemailer = require('nodemailer');
 
-export default function (req, res) {
+export default async function (req: NextApiRequest, res: NextApiResponse): Promise<void> {
     const { firstName, lastName, img, email, title, text, price, total, totalCost } = req.body;
 
     const transporter = nodemailer.createTransport({
@@ -70,13 +72,13 @@ export default function (req, res) {
         `,
     };
 
-    transporter.sendMail(message, function (error, info) {
+    transporter.sendMail(message, async (error, info) => {
         if (error) {
             console.log(error);
-            res.status(500).json({ message: `Error occurred`, error });
+            await res.status(500).json({ message: `Error occurred`, error });
         } else {
             console.log('Email sent: ' + info.response);
-            res.status(200).json(req);
+            await res.status(200).json(req);
         }
     });
 }

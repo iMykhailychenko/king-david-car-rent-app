@@ -1,6 +1,8 @@
+import { NextApiRequest, NextApiResponse } from 'next';
+
 const nodemailer = require('nodemailer');
 
-export default function (req, res) {
+export default async function (req: NextApiRequest, res: NextApiResponse): Promise<void> {
     const transporter = nodemailer.createTransport({
         service: 'outlook',
         auth: {
@@ -16,21 +18,20 @@ export default function (req, res) {
         text: `Hello Ihor! Look at this`,
         html: `
             <h2>Hello Ihor! Look at this!</h2>
-            <h4>${new Date}</h4>
+            <h4>${new Date()}</h4>
             <pre>
                 ${JSON.stringify(req.headers, null, 4)}
             </pre>
         `,
     };
 
-    transporter.sendMail(message, function (error, info) {
+    await transporter.sendMail(message, async (error, info) => {
         if (error) {
             console.log(error);
-            res.status(200).json({ _: 'Кажется, вам не стоит сюда смотреть!' });
+            await res.status(200).json({ _: 'Кажется, вам не стоит сюда смотреть!' });
         } else {
             console.log('Email sent: ' + info.response);
-            res.status(500).json({ _: 'Кажется, вам не стоит сюда смотреть!' });
+            await res.status(500).json({ _: 'Кажется, вам не стоит сюда смотреть!' });
         }
     });
-
 }

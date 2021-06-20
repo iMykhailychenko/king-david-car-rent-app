@@ -1,4 +1,4 @@
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -19,7 +19,7 @@ export const useStyles = makeStyles((theme: Theme) =>
             '@media (max-width: 450px)': {
                 marginTop: theme.spacing(0),
                 marginBottom: theme.spacing(0),
-            }
+            },
         },
         paper: {
             position: 'relative',
@@ -48,8 +48,8 @@ export const useStyles = makeStyles((theme: Theme) =>
                 paddingTop: theme.spacing(20),
                 '&::before': {
                     background: `linear-gradient(to bottom, rgba(0,0,0,0) 0%, ${theme.palette.common.black}) 0%`,
-                }
-            }
+                },
+            },
         },
     }),
 );

@@ -1,5 +1,4 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -7,12 +6,14 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Rating from '@material-ui/lab/Rating';
-import Paper from '@material-ui/core/Paper';
-import { getSingleCarSelector } from '../../../redux/selectors';
+import React, { ReactElement } from 'react';
+import { useSelector } from 'react-redux';
+
 import { ICar } from '../../../interfaces/interfaces';
+import { getSingleCarSelector } from '../../../redux/selectors';
 import { useStyles } from '../table.srtyles';
 
-const Car = () => {
+const Car = (): ReactElement => {
     const styles = useStyles();
     const car: ICar = useSelector(getSingleCarSelector);
 
@@ -21,7 +22,9 @@ const Car = () => {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell className={styles.head} colSpan={2}>Car information</TableCell>
+                        <TableCell className={styles.head} colSpan={2}>
+                            Car information
+                        </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

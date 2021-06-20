@@ -1,11 +1,12 @@
-import React from 'react';
-import Router from 'next/router';
-import { useSelector, useDispatch } from 'react-redux';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles, Theme } from '@material-ui/core/styles';
+import Router from 'next/router';
+import React, { ReactElement } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { IState } from '../../redux/rootState';
-import { start, end } from './loader.actions';
+import { end, start } from './loader.actions';
 
 const useStyles = makeStyles((theme: Theme) => ({
     backdrop: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
 }));
 
-const Loader = () => {
+const Loader = (): ReactElement => {
     const styles = useStyles();
     const dispatch = useDispatch();
     const loading = useSelector((state: IState): boolean => state.loading);

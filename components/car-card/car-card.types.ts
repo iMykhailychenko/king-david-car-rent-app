@@ -20,7 +20,4 @@ interface IGetCartsError {
     payload: string;
 }
 
-export type ActionTypes =
-    | IGetCartsStart
-    | IGetCartsSuccess
-    | IGetCartsError;
+export type ActionTypes = IGetCartsStart | IGetCartsSuccess | IGetCartsError;

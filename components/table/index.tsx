@@ -1,10 +1,11 @@
-import React from 'react';
-import User from './parts/taple.user';
-import Car from './parts/taple.car';
-import Date from './parts/table.date';
-import Location from './parts/taple.location';
+import React, { ReactElement } from 'react';
 
-const FinalTable = () => (
+import Date from './parts/table.date';
+import Car from './parts/taple.car';
+import Location from './parts/taple.location';
+import User from './parts/taple.user';
+
+const FinalTable = (): ReactElement => (
     <>
         <User />
         <Car />

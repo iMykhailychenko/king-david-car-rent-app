@@ -1,13 +1,11 @@
 import { combineReducers } from 'redux';
-import { createInitDateObj, createCustomDateObj, isCorrectEnd, isCorrectStart, createEndDateObj } from '../../helpers/dateUtils';
+
+import { createCustomDateObj, createEndDateObj, createInitDateObj, isCorrectEnd, isCorrectStart } from '../../helpers/dateUtils';
 import { IDate } from '../../interfaces/interfaces';
 import * as types from './checkin-date.types';
 
 // 2 - Checkin can be only in the next 2 hours (from current time and not sooner)
-const from = (
-    fromDate: IDate = createCustomDateObj(createInitDateObj(2)),
-    action: types.ActionTypes,
-): IDate => {
+const from = (fromDate: IDate = createCustomDateObj(createInitDateObj(2)), action: types.ActionTypes): IDate => {
     switch (action.type) {
         case types.CHECKIN_DATE_TO:
             if (!isCorrectStart(action.payload, 2)) return createEndDateObj(action.payload, 4);
@@ -37,7 +35,7 @@ const to = (toDate: IDate = createCustomDateObj(createInitDateObj(6)), action: t
     }
 };
 
-const done = (done: boolean = false, action: types.ActionTypes): boolean => {
+const done = (done = false, action: types.ActionTypes): boolean => {
     switch (action.type) {
         case types.CHECKIN_DONE:
             return action.payload;

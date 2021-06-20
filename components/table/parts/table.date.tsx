@@ -1,19 +1,20 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import { getSingleCarSelector, getCheckinFrom, getCheckinTo } from '../../../redux/selectors';
+import React, { ReactElement } from 'react';
+import { useSelector } from 'react-redux';
+
 import { totlaCheckinTime } from '../../../helpers/dateUtils';
-import formatePrice from '../../../helpers/priceFormate';
-import { IDate, ICar } from '../../../interfaces/interfaces';
+import formatPrice from '../../../helpers/priceFormate';
+import { ICar, IDate } from '../../../interfaces/interfaces';
+import { getCheckinFrom, getCheckinTo, getSingleCarSelector } from '../../../redux/selectors';
 import { useStyles } from '../table.srtyles';
 
-const Date = () => {
+const Date = (): ReactElement => {
     const styles = useStyles();
     // car
     const car: ICar = useSelector(getSingleCarSelector);
@@ -28,7 +29,9 @@ const Date = () => {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell className={styles.head} colSpan={2}>Checkin resume</TableCell>
+                        <TableCell className={styles.head} colSpan={2}>
+                            Checkin resume
+                        </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -36,9 +39,7 @@ const Date = () => {
                         <TableCell className={styles.side} component="th" scope="row">
                             Start date:
                         </TableCell>
-                        <TableCell>
-                            {`${dateFrom.day}.${dateFrom.month}.${dateFrom.year} ${dateFrom.time}:00`}
-                        </TableCell>
+                        <TableCell>{`${dateFrom.day}.${dateFrom.month}.${dateFrom.year} ${dateFrom.time}:00`}</TableCell>
                     </TableRow>
 
                     <TableRow>
@@ -59,7 +60,7 @@ const Date = () => {
                         <TableCell className={styles.side} component="th" scope="row">
                             Total cost:
                         </TableCell>
-                        <TableCell>{`$${formatePrice(total * car.price)}`}</TableCell>
+                        <TableCell>{`$${formatPrice(total * car.price)}`}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>

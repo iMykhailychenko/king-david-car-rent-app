@@ -1,8 +1,8 @@
-import React, { ReactChild } from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Link from 'next/link';
-import HomeIcon from '@material-ui/icons/Home';
 import Chip from '@material-ui/core/Chip';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import HomeIcon from '@material-ui/icons/Home';
+import Link from 'next/link';
+import React, { ReactChild, ReactElement } from 'react';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -30,7 +30,7 @@ interface IProps {
     children?: ReactChild;
 }
 
-const ToHomeLink = ({ children }: IProps) => {
+const ToHomeLink = ({ children }: IProps): ReactElement => {
     const styles = useStyles();
 
     return (
@@ -40,7 +40,7 @@ const ToHomeLink = ({ children }: IProps) => {
                     <Chip label="back to home page" icon={<HomeIcon />} clickable />
                 </a>
             </Link>
-            {children && children}
+            {children}
         </div>
     );
 };

@@ -1,15 +1,16 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
-import { getSingleCarSelector, getCheckinFrom, getCheckinTo } from '../../redux/selectors';
+import Typography from '@material-ui/core/Typography';
+import React, { ReactElement } from 'react';
+import { useSelector } from 'react-redux';
+
 import { totlaCheckinTime } from '../../helpers/dateUtils';
-import formatePrice from '../../helpers/priceFormate';
-import { IDate, ICar } from '../../interfaces/interfaces';
+import formatPrice from '../../helpers/priceFormate';
+import { ICar, IDate } from '../../interfaces/interfaces';
+import { getCheckinFrom, getCheckinTo, getSingleCarSelector } from '../../redux/selectors';
 import useStyles from './single-car.styles';
 
-const SingleCar = () => {
+const SingleCar = (): ReactElement => {
     const styles = useStyles();
     // car
     const car: ICar = useSelector(getSingleCarSelector);
@@ -36,7 +37,7 @@ const SingleCar = () => {
                     </Typography>
                     <Typography className={styles.bold} variant="body2" gutterBottom>
                         total price:
-                        <span className={styles.price}>{` $${formatePrice(total * car.price)} `}</span>
+                        <span className={styles.price}>{` $${formatPrice(total * car.price)} `}</span>
                         {`- $${car.price}.00/hour`}
                     </Typography>
 
